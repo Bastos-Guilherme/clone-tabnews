@@ -12,7 +12,7 @@ export default async function migrations(request, response) {
   let dbClient;
   try {
     dbClient = await database.getNewClient();
-    const defaultMigrationRunnerOptions = {
+    let defaultMigrationRunnerOptions = {
       dbClient: dbClient,
       dryrun: true,
       dir: join("infra", "migrations"),
@@ -24,14 +24,12 @@ export default async function migrations(request, response) {
       const pendingMigrations = await migrationRunner(
         defaultMigrationRunnerOptions,
       );
-      await dbClient.end();
       response.status(200).json(pendingMigrations);
     } else if (request.method === "POST") {
       defaultMigrationRunnerOptions.dryrun = false;
       const migratedMigrations = await migrationRunner(
         defaultMigrationRunnerOptions,
       );
-      await dbClient.end();
       if (migratedMigrations.length > 0) {
         response.status(201).json(migratedMigrations);
       } else {
