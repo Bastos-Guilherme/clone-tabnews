@@ -2,8 +2,8 @@ import database from "infra/database.js";
 import orchestrator from "tests/orchestrator.js";
 
 beforeAll(async () => {
-  await orchestrator;
-  cleanseDatabaseSchema();
+  await orchestrator.waitForAllServices();
+  await cleanseDatabaseSchema();
 });
 
 async function cleanseDatabaseSchema() {

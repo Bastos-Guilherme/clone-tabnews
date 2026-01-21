@@ -18,4 +18,4 @@ async function waitForAllServices() {
   }
 }
 
-export { waitForAllServices };
+export default { waitForAllServices };
