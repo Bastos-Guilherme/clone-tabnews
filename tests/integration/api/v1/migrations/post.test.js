@@ -3,7 +3,7 @@ import orchestrator from "tests/orchestrator.js";
 
 beforeAll(async () => {
   await orchestrator;
-  cleanseDatabaseSchema;
+  cleanseDatabaseSchema();
 });
 
 async function cleanseDatabaseSchema() {
