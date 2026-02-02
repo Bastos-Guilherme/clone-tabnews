@@ -17,4 +17,4 @@ function handleReturn(error, stdout) {
 }
 
 console.log("\n\n🔴 Aguardando postgres aceitar conexoes...");
-checkPostgres;
+checkPostgres();
